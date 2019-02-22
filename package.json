@@ -1,0 +1,15 @@
+{
+  "name": "jokeTeller",
+  "version": "1.0.0",
+  "description": "A program to tell you jokes when you feeling alone",
+  "main": "main.js",
+  "author": "Ricardo Godoz <ricardogodoz@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
+    "jsdom": "^13.2.0",
+    "readline": "^1.3.0",
+    "watson-developer-cloud": "^3.18.1"
+  }
+}
