@@ -26,15 +26,19 @@ const getSubject = () => {
 
 const getJoke = async (subject) => {
 
+  console.log('Searching for jokes...')
+
   const response = await axios.get(`http://www.laughfactory.com/jokes/search/?kw=${subject}`)
 
   const dom = new JSDOM(response.data)
 
   const jokes = dom.window.document.getElementsByClassName('joke-text')
 
+  if (jokes.length == 0) throw Error(`Coundn't find any joke about ${subject}`)
+
   let joke = jokes[0].textContent.trim()
 
-  if (!joke) throw Error(`Coundn't find any joke about ${subject}`)
+  console.log('Joke found:', joke.substr(0, 10) + '...')
 
   return joke
 
@@ -49,6 +53,8 @@ const generateJokeAudio = (joke) => {
       url: process.env.SERVICE_NAME_URL
     });
 
+    console.log('Generating audio from text...')
+
     textToSpeech.synthesize({
       text: joke,
       accept: 'audio/mp3',
@@ -59,7 +65,11 @@ const generateJokeAudio = (joke) => {
         reject(error)
       }
 
+      console.log('Got audio from Watson')
+
       fs.writeFileSync('joke.mp3', audio)
+
+      console.log('joke.mp3 file was writed')
 
       resolve()
 
@@ -70,6 +80,7 @@ const generateJokeAudio = (joke) => {
 }
 
 const sayJoke = () => {
+  console.log('Executing joke.mp3...')
   exec('start joke.mp3')
 }
 
