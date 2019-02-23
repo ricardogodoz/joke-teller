@@ -1,10 +1,13 @@
 {
   "name": "jokeTeller",
   "version": "1.0.0",
-  "description": "A program to tell you jokes when you feeling alone",
+  "description": "A program to tell you jokes when you are feeling alone",
   "main": "main.js",
   "author": "Ricardo Godoz <ricardogodoz@outlook.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node main.js"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "dotenv": "^6.2.0",
