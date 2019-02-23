@@ -1,15 +1,17 @@
-require('dotenv').config()
+const dotenv = require('dotenv')
 const readline = require('readline')
 const axios = require('axios')
 const { JSDOM } = require('jsdom')
 const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1')
 const fs = require('fs')
-const {exec} = require("child_process")
+const { exec } = require("child_process")
+
+dotenv.config()
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
-});
+})
 
 const begin = async () => {
   console.clear()
@@ -51,7 +53,7 @@ const generateJokeAudio = (joke) => {
     var textToSpeech = new TextToSpeechV1({
       iam_apikey: process.env.SERVICE_NAME_API_KEY,
       url: process.env.SERVICE_NAME_URL
-    });
+    })
 
     console.log('Generating audio from text...')
 
