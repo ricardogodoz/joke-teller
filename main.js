@@ -51,8 +51,8 @@ const generateJokeAudio = (joke) => {
   return new Promise((resolve) => {
 
     var textToSpeech = new TextToSpeechV1({
-      iam_apikey: process.env.SERVICE_NAME_API_KEY,
-      url: process.env.SERVICE_NAME_URL
+      iam_apikey: process.env.TEXT_TO_SPEACH_API_KEY,
+      url: process.env.TEXT_TO_SPEACH_API_URL
     })
 
     console.log('Generating audio from text...')
