@@ -17,6 +17,12 @@ const begin = async () => {
   console.clear()
 }
 
+const verifyDependencies = async () => {
+  if (!fs.existsSync('.env')) throw Error('Setup your .env file')
+  if (!process.env.TEXT_TO_SPEACH_API_KEY) throw Error('Setup your IBM Cloud API Key for Watson text to speach API')
+  if (!process.env.TEXT_TO_SPEACH_API_URL) throw Error('Setup your IBM Cloud API URL for Watson text to speach API')
+}
+
 const getSubject = () => {
   return new Promise((resolve) => {
     rl.question('Tell me a joke about ', (subject) => {
@@ -88,9 +94,11 @@ const sayJoke = () => {
 
 const handleError = (error) => {
   console.log('An error has ocurred', error)
+  process.exit()
 }
 
 begin()
+  .then(verifyDependencies)
   .then(getSubject)
   .then(getJoke)
   .then(generateJokeAudio)
