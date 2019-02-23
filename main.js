@@ -57,8 +57,8 @@ const generateJokeAudio = (joke) => {
 
     textToSpeech.synthesize({
       text: joke,
-      accept: 'audio/mp3',
-      voice: 'en-US_AllisonVoice'
+      accept: 'audio/wav',
+      voice: 'en-US_MichaelVoice'
     }, (error, audio) => {
 
       if (error) {
@@ -67,9 +67,9 @@ const generateJokeAudio = (joke) => {
 
       console.log('Got audio from Watson')
 
-      fs.writeFileSync('joke.mp3', audio)
+      fs.writeFileSync('joke.wav', audio)
 
-      console.log('joke.mp3 file was writed')
+      console.log('joke.wav file was writed')
 
       resolve()
 
@@ -80,8 +80,8 @@ const generateJokeAudio = (joke) => {
 }
 
 const sayJoke = () => {
-  console.log('Executing joke.mp3...')
-  exec('start joke.mp3')
+  console.log('Executing joke.wav...')
+  exec('start joke.wav')
 }
 
 const handleError = (error) => {
